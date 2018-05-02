@@ -1,21 +1,17 @@
 import json
 from prototxt_basic import *
 import sys, argparse
-sys.path.append( '/media/st/DATA01/Projects/sphereface-master/tools/caffe-sphereface/python')
+sys.path.append( '..../python')
 import mxnet as mx
 import caffe
 import numpy as np
 
 parser = argparse.ArgumentParser(description='Convert MXNet jason to Caffe prototxt')
-parser.add_argument('--mx-json',     type=str,
-                    default='/media/st/DATA01/Projects/insightface/model/model/resnet50_thin_400k_combine_1.2_0.4_0.0/'
-                    'model-symbol.json')
-parser.add_argument('--mx-model',    type=str,
-                    default='/media/st/DATA01/Projects/insightface/model/model/resnet50_thin_400k_combine_1.2_0.4_0.0/'
-                    'model')
-parser.add_argument('--mx-epoch',    type=int, default=125000)
-parser.add_argument('--cf-prototxt', type=str, default='model_caffe/0502_resnet50_thin_400k_1.2_0.4_0.0_125k.prototxt')
-parser.add_argument('--cf-model',    type=str, default='model_caffe/0502_resnet50_thin_400k_1.2_0.4_0.0_125k.caffemodel')
+parser.add_argument('--mx-json',     type=str, default='model.json')
+parser.add_argument('--mx-model',    type=str, default='')
+parser.add_argument('--mx-epoch',    type=int, default=0)
+parser.add_argument('--cf-prototxt', type=str, default='model.prototxt')
+parser.add_argument('--cf-model',    type=str, default='model.caffemodel')
 args = parser.parse_args()
 
 #-------------------------------------------
@@ -242,16 +238,6 @@ def create_prototxt(merge_bn = False):
     info_list = info_list_merge_unknown(info_list)
     info_list = info_list_merge_bn(info_list)
     info_list = info_list_merge_act(info_list)
-
-    info_list = info_list_exclude(info_list,'fc7')
-    info_list = info_list_exclude(info_list, '_plus16')
-    info_list = info_list_exclude(info_list, 'activation48')
-    # info_list = info_list_exclude(info_list, '_plus1')
-
-    # if merge_bn:
-    #   info_list = info_list_merge_bn(info_list)
-    #
-    # info_list = info_list_merge_act(info_list)
 
     for info in info_list:
       write_node(prototxt_file, info)
