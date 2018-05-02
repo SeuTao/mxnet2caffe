@@ -1,0 +1,558 @@
+name: "mxnet-mdoel"
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param {
+    shape: { dim: 1 dim: 1 dim: 128 dim: 128 }
+  }
+}
+
+layer {
+	bottom: "data"
+	top: "convolution0"
+	name: "convolution0"
+	type: "Convolution"
+	convolution_param {
+		num_output: 32
+		kernel_size: 5
+		pad: 2
+		stride: 2
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution0"
+  top: "convolution0"
+  name: "activation0"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "convolution0"
+	top: "convolution1"
+	name: "convolution1"
+	type: "Convolution"
+	convolution_param {
+		num_output: 48
+		kernel_size: 3
+		pad: 1
+		stride: 2
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution1"
+  top: "convolution1"
+  name: "activation1"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "convolution1"
+	top: "convolution2"
+	name: "convolution2"
+	type: "Convolution"
+	convolution_param {
+		num_output: 96
+		kernel_size: 3
+		pad: 1
+		stride: 2
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution2"
+  top: "convolution2"
+  name: "activation2"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "convolution2"
+	top: "convolution3"
+	name: "convolution3"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 1
+		pad: 0
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution3"
+  top: "convolution3"
+  name: "activation3"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "convolution2"
+	top: "convolution4"
+	name: "convolution4"
+	type: "Convolution"
+	convolution_param {
+		num_output: 32
+		kernel_size: 1
+		pad: 0
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution4"
+  top: "convolution4"
+  name: "activation4"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "convolution4"
+	top: "convolution5"
+	name: "convolution5"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution5"
+  top: "convolution5"
+  name: "activation5"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "convolution2"
+	top: "convolution6"
+	name: "convolution6"
+	type: "Convolution"
+	convolution_param {
+		num_output: 32
+		kernel_size: 1
+		pad: 0
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution6"
+  top: "convolution6"
+  name: "activation6"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "convolution6"
+	top: "convolution7"
+	name: "convolution7"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution7"
+  top: "convolution7"
+  name: "activation7"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "convolution7"
+	top: "convolution8"
+	name: "convolution8"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution8"
+  top: "convolution8"
+  name: "activation8"
+  type: "ReLU"
+}
+
+layer {
+  name: "concat0"
+  type: "Concat"
+  bottom: "convolution3"
+  bottom: "convolution5"
+  bottom: "convolution8"
+  top: "concat0"
+}
+
+layer {
+	bottom: "concat0"
+	top: "convolution9"
+	name: "convolution9"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 1
+		pad: 0
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution9"
+  top: "convolution9"
+  name: "activation9"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "concat0"
+	top: "convolution10"
+	name: "convolution10"
+	type: "Convolution"
+	convolution_param {
+		num_output: 32
+		kernel_size: 1
+		pad: 0
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution10"
+  top: "convolution10"
+  name: "activation10"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "convolution10"
+	top: "convolution11"
+	name: "convolution11"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution11"
+  top: "convolution11"
+  name: "activation11"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "concat0"
+	top: "convolution12"
+	name: "convolution12"
+	type: "Convolution"
+	convolution_param {
+		num_output: 32
+		kernel_size: 1
+		pad: 0
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution12"
+  top: "convolution12"
+  name: "activation12"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "convolution12"
+	top: "convolution13"
+	name: "convolution13"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution13"
+  top: "convolution13"
+  name: "activation13"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "convolution13"
+	top: "convolution14"
+	name: "convolution14"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 3
+		pad: 1
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution14"
+  top: "convolution14"
+  name: "activation14"
+  type: "ReLU"
+}
+
+layer {
+  name: "concat1"
+  type: "Concat"
+  bottom: "convolution9"
+  bottom: "convolution11"
+  bottom: "convolution14"
+  top: "concat1"
+}
+
+layer {
+	bottom: "concat1"
+	top: "convolution15"
+	name: "convolution15"
+	type: "Convolution"
+	convolution_param {
+		num_output: 192
+		kernel_size: 1
+		pad: 0
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution15"
+  top: "convolution15"
+  name: "activation15"
+  type: "ReLU"
+}
+
+layer {
+  name: "_plus0"
+  type: "Eltwise"
+  bottom: "concat0"
+  bottom: "convolution15"
+  top: "_plus0"
+}
+
+layer {
+  bottom: "_plus0"
+  top: "_plus0"
+  name: "activation16"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "_plus0"
+	top: "convolution16"
+	name: "convolution16"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 1
+		pad: 0
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution16"
+  top: "convolution16"
+  name: "activation17"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "convolution16"
+	top: "convolution17"
+	name: "convolution17"
+	type: "Convolution"
+	convolution_param {
+		num_output: 128
+		kernel_size: 3
+		pad: 1
+		stride: 2
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution17"
+  top: "convolution17"
+  name: "activation18"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "_plus0"
+	top: "convolution18"
+	name: "convolution18"
+	type: "Convolution"
+	convolution_param {
+		num_output: 64
+		kernel_size: 1
+		pad: 0
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution18"
+  top: "convolution18"
+  name: "activation19"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "convolution18"
+	top: "convolution19"
+	name: "convolution19"
+	type: "Convolution"
+	convolution_param {
+		num_output: 96
+		kernel_size: 3
+		pad: 1
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution19"
+  top: "convolution19"
+  name: "activation20"
+  type: "ReLU"
+}
+
+layer {
+	bottom: "convolution19"
+	top: "convolution20"
+	name: "convolution20"
+	type: "Convolution"
+	convolution_param {
+		num_output: 96
+		kernel_size: 3
+		pad: 1
+		stride: 2
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution20"
+  top: "convolution20"
+  name: "activation21"
+  type: "ReLU"
+}
+
+layer {
+  bottom: "_plus0"
+  top: "pooling0"
+  name: "pooling0"
+  type: "Pooling"
+  pooling_param {
+    pool: AVE
+    kernel_size: 3
+    stride: 2
+    pad: 0
+  }
+}
+
+layer {
+	bottom: "pooling0"
+	top: "convolution21"
+	name: "convolution21"
+	type: "Convolution"
+	convolution_param {
+		num_output: 160
+		kernel_size: 3
+		pad: 1
+		stride: 1
+		bias_term: true
+	}
+}
+
+layer {
+  bottom: "convolution21"
+  top: "convolution21"
+  name: "activation22"
+  type: "ReLU"
+}
+
+layer {
+  name: "concat2"
+  type: "Concat"
+  bottom: "convolution17"
+  bottom: "convolution20"
+  bottom: "convolution21"
+  top: "concat2"
+}
+
+layer {
+  bottom: "concat2"
+  top: "pooling1"
+  name: "pooling1"
+  type: "Pooling"
+  pooling_param {
+    pool: AVE
+    kernel_size: 3
+    stride: 2
+    pad: 0
+  }
+}
+
+layer {
+  bottom: "pooling1"
+  top: "bn1"
+  name: "bn1"
+  type: "Scale"
+  scale_param { bias_term: true }
+}
+
+layer {
+  bottom: "bn1"
+  top: "pre_fc1"
+  name: "pre_fc1"
+  type: "InnerProduct"
+  inner_product_param {
+    num_output: 256
+  }
+}
+
